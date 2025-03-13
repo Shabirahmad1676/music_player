@@ -1,5 +1,5 @@
 import React from 'react'
-import { IoMdHeadset } from 'react-icons/io'
+import { BsHeartFill } from 'react-icons/bs'
 import { IoSearch } from 'react-icons/io5'
 import { RiPlayListLine } from 'react-icons/ri'
 import { TiHome } from 'react-icons/ti'
@@ -11,7 +11,7 @@ const NavBar = () => {
       <Link to="/"><TiHome className='h-[25px] w-[25px]'/></Link>
       <Link to="/liked"><IoSearch className='h-[25px] w-[25px]'/></Link>
       <Link to="/search"><RiPlayListLine className='h-[25px] w-[25px]'/></Link>
-      <Link to="/search"><IoMdHeadset className='h-[25px] w-[25px]'/></Link>
+      <Link to="/search"><BsHeartFill className='h-[25px] w-[25px]'/></Link>
     </div>
   )
 }
