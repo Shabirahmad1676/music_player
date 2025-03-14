@@ -4,8 +4,8 @@
 #range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   background: #ffbb00;
   border-radius: 50%;
   cursor: pointer;
@@ -24,4 +24,8 @@ input[type="range"]::-moz-range-thumb {
   background: #007bff;
   border-radius: 50%;
   cursor: pointer;
+}
+
+::-webkit-scrollbar{
+  display: none;
 }

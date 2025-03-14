@@ -8,8 +8,8 @@ import { userData } from "../context/UserContext";
 const Card = ({ name, singer, image ,songsIndex }) => {
   const{playing,index,setIndex} = useContext(userData)
   return (
-    <div className="hover:bg-gray-800 cursor-pointer bg-gray-500 w-[90%] h-[100px] rounded-md ml-3 flex">
-      <div className=" flex items-center justify-start h-[100%] w-[70%] gap-5 md:p-3 p-2" onClick={()=>{
+    <div className="hover:bg-gray-800 cursor-pointer bg-gray-500 w-[90%]   h-[100px] rounded-md ml-3 flex">
+      <div className=" flex items-center justify-start h-[100%] w-[80%]  gap-5 md:p-3 p-2" onClick={()=>{
       setIndex(songsIndex),
         playing()}}>
         <div className="flex gap-4 items-center justify-start ">
@@ -19,7 +19,7 @@ const Card = ({ name, singer, image ,songsIndex }) => {
             alt=""
           />
           <div className="flex flex-col">
-            <h2 className="text-white font-bold text-center text-[15px]">
+            <h2 className="text-white md:font-bold text-center text-[8px] md:text-[15px]">
               {singer}
             </h2>
             <h2 className="text-white  text-center text-[10px]">
@@ -36,6 +36,7 @@ const Card = ({ name, singer, image ,songsIndex }) => {
           <GoHeart className="text-white md:text-2xl" />
         </button>
       </div>
+      
     </div>
   );
 };

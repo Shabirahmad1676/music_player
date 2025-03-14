@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   return (
-    <div className='w-full h-[100px] fixed md:top-0  bottom-0 flex items-center justify-around md:justify-center p-12 gap-15 bg-black text-white'>
+    <div className='w-full h-[100px] fixed md:top-0 z-30 bottom-0 flex items-center justify-around md:justify-center p-12 gap-15 bg-black text-white rounded-t-[20px]'>
       <Link to="/"><TiHome className='h-[25px] w-[25px]'/></Link>
       <Link to="/liked"><IoSearch className='h-[25px] w-[25px]'/></Link>
       <Link to="/search"><RiPlayListLine className='h-[25px] w-[25px]'/></Link>
