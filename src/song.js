@@ -43,4 +43,13 @@ export const songsData = [
     liked: false,
     singer: "Sid Sriram",
   },
+  {
+    id: 5,
+    name: "Srivalli",
+    song: song2,
+    image: image4,
+    category: "Romantic, South Indian",
+    liked: false,
+    singer: "Sid Sriram",
+  }
 ];
