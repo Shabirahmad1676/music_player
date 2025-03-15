@@ -31,15 +31,34 @@ const Home = () => {
   const [progress, setProgress] = useState(0);
   const [arrow, setArrow] = useState(false);
 
+ 
+
   useEffect(() => {
-    let updateprogress = () => {
+    const handleSongEnd = () => {
+      nextPlay(); // Automatically play the next song when the current one ends
+    };
+
+    audioRef.current.addEventListener("ended", handleSongEnd);
+
+    return () => {
+      audioRef.current.removeEventListener("ended", handleSongEnd);
+    };
+  }, [nextPlay]);
+
+  useEffect(() => {
+    const updateprogress = () => {
       let duration = audioRef.current.duration || 0;
       let currentTime = audioRef.current.currentTime || 0;
       let percentage = (currentTime / duration) * 100 || 0;
       setProgress(percentage);
     };
+
     audioRef.current.addEventListener("timeupdate", updateprogress);
-  });
+
+    return () => {
+      audioRef.current.removeEventListener("timeupdate", updateprogress);
+    };
+  }, []);
 
   const handleRange = (e) => {
     const newRange = e.target.value;
@@ -48,7 +67,7 @@ const Home = () => {
     let duration = audioRef.current.duration || 0;
     audioRef.current.currentTime = (duration * newRange) / 100;
     // console.log(audioRef.current.currentTime);
-    // console.log("duration", duration);    
+    // console.log("duration", duration);
   };
   return (
     <div className="bg-black h-screen w-full flex relative overflow-hidden">
@@ -95,15 +114,17 @@ const Home = () => {
                 {songsData[index].name}
               </div>
             </div>
-            <div className="w-full  flex items-center justify-center">
+            <div className="w-full flex flex-col items-center justify-center px-6">
+              
               <input
                 onChange={handleRange}
                 value={progress}
-                id="range"
                 type="range"
-                className="appearance-none w-[40%] h-[7px] bg-gray-400 rounded-md"
+                className="appearance-none w-[40%] h-[8px] bg-gray-300 rounded-lg overflow-hidden cursor-pointer 
+    accent-blue-500 "
               />
             </div>
+
             <div className="text-white flex items-center gap-4 justify-center">
               <button>
                 {" "}
@@ -132,9 +153,9 @@ const Home = () => {
             </div>
           </div>
           <div className="w-[100%] md:w-[50%] h-full hidden md:flex flex-col gap-3 overflow-auto pt-[120px] pb-4">
-            {songsData.map((songs,index) => (
-              <Card 
-              key={index}
+            {songsData.map((songs, index) => (
+              <Card
+                key={index}
                 name={songs.name}
                 singer={songs.singer}
                 image={songs.image}
@@ -145,16 +166,17 @@ const Home = () => {
         </>
       ) : (
         <div className="w-[100%] md:w-[50%] h-full  flex items-center flex-col  gap-3  overflow-auto mt-[120px] pb-[120px]">
-          <Player/>
-          {songsData.map((songs,index) => (
-            <Card key={index}
+          <Player />
+          {songsData.map((songs, index) => (
+            <Card
+              key={index}
               name={songs.name}
               singer={songs.singer}
               image={songs.image}
               songsIndex={songs.id - 1}
             />
           ))}
-        </div> 
+        </div>
       )}
     </div>
   );

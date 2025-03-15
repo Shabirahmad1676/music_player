@@ -7,8 +7,8 @@ import { CiPause1 } from "react-icons/ci";
 const Player = () => {
   const{playing, pause, play, index, setindex} = useContext(userData)
   return (
-    <div className="w-full bg-white p-2 h-[100px] md:hidden  fixed bottom-[80px] md:bottom-0 rounded-t-[20px] ">
-      <div className=" flex items-center justify-between h-[100%] w-[100%]  gap-5 md:p-3 p-4">
+    <div className="w-full bg-white  h-[100px] lg:w-[790px] lg:h-[100px] fixed bottom-[80px] md:bottom-0 lg:bottom-2 rounded-t-[20px] ">
+      <div className=" flex items-center justify-between h-[100%] w-[100%]  gap-5 md:p-3 p-4 lg:p-2 lg:mt-2">
         <div className="flex gap-4 items-center justify-start rounded-md mb-4">
           <img
             src={songsData[index].image}
@@ -24,9 +24,9 @@ const Player = () => {
             </h2>
           </div>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 lg:mt-2">
         {!play ? (
-                    <button className="bg-gray-500 rounded-xl p-1" onClick={() => playing()}>
+                    <button className="bg-gray-400 rounded-xl p-1" onClick={() => playing()}>
                       <IoPlay className="text-4xl" />
                     </button>
                   ) : (
