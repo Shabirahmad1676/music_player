@@ -2,17 +2,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import Player from '../components/Player'
 import { BiMusic, BiSearch } from 'react-icons/bi'
 import { songsData } from "../song";
-import { userData } from '../context/UserContext';
 import Card from '../components/Card';
 
 const Search = () => {
   const [inputValue, setInputValue] = useState("")
   const [newList, setNewlist] = useState([])
-  const { audioRef } = useContext(userData)
 
   useEffect(() => {
     let searched = songsData.filter((song) =>
-      song.name.toLowerCase().includes(inputValue) || song.singer.toLowerCase().includes(inputValue)
+      song.name.toLowerCase().includes(inputValue) || song.singer.toLowerCase().includes(inputValue) ||   song.name.includes(inputValue) || song.singer.includes(inputValue) ||     song.name.toUpperCase().includes(inputValue) || song.singer.toUpperCase().includes(inputValue)
     )
     setNewlist(searched)
   }, [inputValue])
@@ -24,12 +22,9 @@ const Search = () => {
 
   return (
     <div className='relative w-full h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex flex-col items-center gap-6 pt-20'>
-      
-      {/* Music Player */}
       <Player />
-
       {/* Search Bar */}
-      <form onSubmit={handleForm} className='absolute top-[100px] w-[80%] md:w-[50%] flex items-center bg-gray-800/70 backdrop-blur-md rounded-full px-4 py-2 shadow-md'>
+      <form onSubmit={handleForm} className='absolute top-[100px] w-[80%] md:w-[50%] flex items-center bg-gray-900 backdrop-blur-3xl rounded-full px-4 py-2 shadow-md'>
         <input
           type="text"
           placeholder='Search for a song...'
@@ -44,7 +39,7 @@ const Search = () => {
 
       {/* Search Results */}
       {inputValue ? (
-        <div className='w-full md:w-[80%] flex flex-col items-center gap-3 mt-18 max-h-[70vh] overflow-auto p-2'>
+        <div className='w-full md:w-[80%] flex flex-col items-center gap-3 lg:mt-18 mt-22 max-h-[70vh] overflow-auto p-2'>
           {newList.length > 0 ? (
             newList.map((songs, index) => (
               <Card
@@ -60,7 +55,7 @@ const Search = () => {
           )}
         </div>
       ) : (
-        <div className='flex items-center gap-3 text-3xl text-gray-400 mt-10'>
+        <div className='flex items-center gap-3 text-3xl text-gray-400 mt-40'>
           <BiMusic />
           <p>Search for a song</p>
         </div>
